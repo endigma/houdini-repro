@@ -3,7 +3,7 @@ import type { Handle } from "@sveltejs/kit";
 import houdiniClient from "$lib/client";
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const token: string | undefined = event.cookies.get("session");
+	const token = "TOKEN_SET_BY_HANDLE";
 
 	console.log("Setting session token,", token);
 
