@@ -8,7 +8,9 @@ async function fetchQuery({
 	metadata,
 	session,
 }: RequestHandlerArgs) {
-	const url = import.meta.env.VITE_GRAPHQL_ENDPOINT || "http://localhost:4001/api/query";
+	const url =
+		import.meta.env.VITE_GRAPHQL_ENDPOINT ||
+		"https://swapi-graphql.netlify.app/.netlify/functions/index";
 
 	console.log("Reading session token", session.token);
 
@@ -17,10 +19,9 @@ async function fetchQuery({
 		mode: "cors",
 		headers: {
 			...(!browser
-				? { Origin: import.meta.env.VITE_BASE_URL ?? "http://localhost:4000" }
+				? { Origin: import.meta.env.VITE_BASE_URL ?? "http://localhost:5173" }
 				: {}),
 			"Content-Type": "application/json",
-			session: session.token ?? "",
 		},
 		body: JSON.stringify({
 			query: text,
